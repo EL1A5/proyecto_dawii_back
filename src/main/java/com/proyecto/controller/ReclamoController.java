@@ -10,5 +10,5 @@ import com.proyecto.util.AppSettings;
 @RequestMapping("/url/reclamo")
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class ReclamoController {
-
+// autor : sebastian
 }
