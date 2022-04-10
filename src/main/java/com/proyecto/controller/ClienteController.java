@@ -10,5 +10,7 @@ import com.proyecto.util.AppSettings;
 @RequestMapping("/url/cliente")
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class ClienteController {
+	
+	//Autor Bryan Bernuy
 
 }
