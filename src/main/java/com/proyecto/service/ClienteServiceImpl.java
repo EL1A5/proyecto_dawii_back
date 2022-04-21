@@ -19,4 +19,9 @@ public class ClienteServiceImpl implements ClienteService {
 		return repository.findAll();
 	}
 
+	@Override
+	public Cliente insertaActualizaResidente(Cliente obj) {
+		return repository.save(obj);
+	}
+
 }

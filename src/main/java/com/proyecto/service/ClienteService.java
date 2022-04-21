@@ -7,7 +7,7 @@ import com.proyecto.entidad.Cliente;
 public interface ClienteService{
 
 	public abstract List<Cliente> listaCliente();
-	
+	public abstract Cliente insertaActualizaResidente(Cliente obj);
 	
 
 }
