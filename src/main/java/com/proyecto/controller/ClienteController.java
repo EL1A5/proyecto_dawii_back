@@ -1,9 +1,11 @@
 package com.proyecto.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,13 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.proyecto.entidad.Cliente;
 import com.proyecto.service.ClienteService;
 import com.proyecto.util.AppSettings;
 
 @RestController
-@RequestMapping("/url/cliente")
+@RequestMapping("/rest/cliente")
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class ClienteController {
 	@Autowired
@@ -27,25 +28,31 @@ public class ClienteController {
 
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<Cliente>> listaAlumno() {
+	public ResponseEntity<List<Cliente>> listaCliente() {
 		List<Cliente> lista = cliente.listaCliente();
 		return ResponseEntity.ok(lista);
 	}
 
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> insertaAlumno(@RequestBody Cliente obj) {
+	public ResponseEntity<Map<String, Object>> insertaCliente(@RequestBody Cliente obj) {
 		Map<String, Object> salida = new HashMap<>();
-		try {
-			Cliente objSalida = cliente.insertaActualizaResidente(obj);
-			if (objSalida == null) {
-				salida.put("mensaje","Error al registrar");
-			} else {
-				salida.put("mensaje","exito al registrar");
-			}
+	try {	
+		
+		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
+		
+			obj.setIdCliente(0);
+			obj.setFechaRegistro(fecha);
+			Cliente objSalida = cliente.insertaActualizaCliente(obj);
+			
+				if (objSalida == null) {
+					salida.put("mensaje", "Error en el registro ");
+				} else {
+					salida.put("mensaje", "Registro exitoso");   }
 		} catch (Exception e) {
 			e.printStackTrace();
-			salida.put("mensaje", "Error en el registro");
+			salida.put("mensaje", "Error en el registro " + e.getMessage());
 		}
 		return ResponseEntity.ok(salida);
 	}
