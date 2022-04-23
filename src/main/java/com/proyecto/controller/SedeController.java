@@ -10,5 +10,7 @@ import com.proyecto.util.AppSettings;
 @RequestMapping("/url/sede")
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class SedeController {
+	
+	//Autor : Hernan Cardenas Breña
 
 }
