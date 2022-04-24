@@ -1,5 +1,6 @@
 package com.proyecto.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class ProductoController {
 			if (CollectionUtils.isEmpty(listproduct)) {
 				
 				obj.setIdProducto(0);
+				obj.setFechaRegistro(new Date());
 				Producto objsalida=service.RegistrarProducto(obj);
 				
 				if (objsalida==null) {
