@@ -20,8 +20,11 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public Cliente insertaActualizaResidente(Cliente obj) {
+	public Cliente insertaActualizaCliente(Cliente obj) {
+		// TODO Auto-generated method stub
 		return repository.save(obj);
 	}
+
+	
 
 }
