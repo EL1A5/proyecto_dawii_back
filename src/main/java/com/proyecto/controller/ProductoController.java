@@ -49,7 +49,7 @@ public class ProductoController {
 			
 			if (CollectionUtils.isEmpty(listproduct)) {
 				
-				obj.setIdProducto(0);
+				obj.setIdProducto(1);
 				obj.setFechaRegistro(new Date());
 				Producto objsalida=service.RegistrarProducto(obj);
 				
