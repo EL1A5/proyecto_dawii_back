@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.entidad.Cliente;
+import com.proyecto.entidad.Producto;
 import com.proyecto.repository.ClienteRepository;
 
 @Service
@@ -21,10 +22,15 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Cliente insertaActualizaCliente(Cliente obj) {
-		// TODO Auto-generated method stub
 		return repository.save(obj);
 	}
 
-	
-
+	@Override
+	public List<Cliente> listadoDNI(String dni) {
+		return repository.listarporDNI(dni);
+	}
 }
+
+
+
+
