@@ -20,7 +20,7 @@ import com.proyecto.service.ClienteService;
 import com.proyecto.util.AppSettings;
 
 @RestController
-@RequestMapping("/rest/cliente")
+@RequestMapping("/url/rest/cliente")
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class ClienteController {
 	@Autowired

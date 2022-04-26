@@ -9,7 +9,7 @@ public interface ClienteService{
 
 	public abstract List<Cliente> listaCliente();
 	public abstract Cliente insertaActualizaCliente(Cliente obj);
-	public abstract List<Cliente>listadoDNI(String dni);
+
 	
 
 }

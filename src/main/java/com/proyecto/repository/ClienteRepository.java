@@ -8,8 +8,6 @@ import com.proyecto.entidad.Cliente;
 
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-	@Query("Select p from cliente p where p.dni=?1")
-	public abstract List<Cliente> listarporDNI(String dni);
 	
 
 }

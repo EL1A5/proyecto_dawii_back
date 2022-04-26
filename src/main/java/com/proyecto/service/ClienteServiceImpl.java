@@ -25,10 +25,7 @@ public class ClienteServiceImpl implements ClienteService {
 		return repository.save(obj);
 	}
 
-	@Override
-	public List<Cliente> listadoDNI(String dni) {
-		return repository.listarporDNI(dni);
-	}
+	
 }
 
 
