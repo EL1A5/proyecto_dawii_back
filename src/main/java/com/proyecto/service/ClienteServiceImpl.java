@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.entidad.Cliente;
+import com.proyecto.entidad.Producto;
 import com.proyecto.repository.ClienteRepository;
 
 @Service
@@ -19,4 +20,14 @@ public class ClienteServiceImpl implements ClienteService {
 		return repository.findAll();
 	}
 
+	@Override
+	public Cliente insertaActualizaCliente(Cliente obj) {
+		return repository.save(obj);
+	}
+
+	
 }
+
+
+
+
