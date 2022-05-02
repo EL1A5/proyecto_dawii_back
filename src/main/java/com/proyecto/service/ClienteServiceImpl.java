@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.proyecto.entidad.Cliente;
-import com.proyecto.entidad.Producto;
 import com.proyecto.repository.ClienteRepository;
 
 @Service
