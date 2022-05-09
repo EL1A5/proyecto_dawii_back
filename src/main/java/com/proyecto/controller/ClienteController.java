@@ -56,7 +56,7 @@ public class ClienteController {
 	}
 	@GetMapping("/listaClienteConParametros")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> listaDocenteNombreDniUbigeo(
+	public ResponseEntity<Map<String, Object>> listaClienteNombreDniUbigeo(
 			@RequestParam(name = "nombres", required = false, defaultValue = "") String nombres,
 			@RequestParam(name = "dni", required = false, defaultValue = "") String dni,
 			@RequestParam(name = "idUbigeo", required = false, defaultValue = "-1") int idUbigeo,
