@@ -24,6 +24,11 @@ public class ClienteServiceImpl implements ClienteService {
 		return repository.save(obj);
 	}
 
+	@Override
+	public List<Cliente> listaClientePorNombreDniUbigeo(String nombres, String dni, int idUbigeo, int estado) {
+		return repository.listaClientePorNombreDniUbigeo(nombres, dni, idUbigeo, estado);
+	}
+
 	
 }
 
