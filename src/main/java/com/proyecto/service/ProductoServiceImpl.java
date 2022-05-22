@@ -33,4 +33,13 @@ public class ProductoServiceImpl implements ProductoService {
 		return repositoryproducto.listarporserie(id);
 	}
 
+	@Override
+	public List<Producto> listaProductoPorFiltros(String nombre, String serie, int pais, int estado) {
+		// TODO Auto-generated method stub
+		return repositoryproducto.listaProductoPorNombreSeriePaisEstado(nombre, serie, pais, estado);
+	}
+
+	
+	
+
 }
