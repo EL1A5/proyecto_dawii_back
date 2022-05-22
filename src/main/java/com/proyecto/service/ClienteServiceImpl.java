@@ -19,4 +19,19 @@ public class ClienteServiceImpl implements ClienteService {
 		return repository.findAll();
 	}
 
+	@Override
+	public Cliente insertaActualizaCliente(Cliente obj) {
+		return repository.save(obj);
+	}
+
+	@Override
+	public List<Cliente> listaClientePorNombreDniUbigeo(String nombres, String dni, int idUbigeo, int estado) {
+		return repository.listaClientePorNombreDniUbigeo(nombres, dni, idUbigeo, estado);
+	}
+
+	
 }
+
+
+
+
