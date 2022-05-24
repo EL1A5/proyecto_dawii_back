@@ -1,5 +1,6 @@
 package com.proyecto.service;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,10 +12,7 @@ public interface ReclamoService {
 
 	public Reclamo insertaActualizaReclamo(Reclamo obj);
 	
-	public  List<Reclamo> ListaReclamoDescricionClienteTiporeclamo(String descripcion ,int idCliente , int idTipoReclamo );
-	
-	//public  List<Reclamo> ListaReclamoDescricionClienteTiporeclamoFecha(String descripcion ,int idCliente , int idTipoReclamo , Date fechaCompra);
-	
+	public  List<Reclamo> ListaReclamoDescricionClienteTiporeclamo(String descripcion ,int idCliente , int idTipoReclamo  , Date fechaCompra , int estado);
 	
 
 }
