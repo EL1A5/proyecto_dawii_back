@@ -31,9 +31,6 @@ public class ReclamoServicelmpl implements ReclamoService {
 	@Override
 	public List<Reclamo> ListaReclamoDescricionClienteTiporeclamo(String descripcion, int idCliente, int idTipoReclamo,
 			Date fechaCompra, int estado) {
-		
-
-		
 		return repo.ListaReclamoDescricionClienteTiporeclamo(descripcion, idCliente, idTipoReclamo,fechaCompra, estado);
 	}
 	
