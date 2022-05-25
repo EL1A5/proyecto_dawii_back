@@ -31,6 +31,11 @@ public class ProveedorServiceImpl  implements ProveedorService{
 		// TODO Auto-generated method stub
 		return repository.listarporRuc(id);
 	}
+
+	@Override
+	public List<Proveedor> listaProveedorConParametros(String razonsocial, String ruc, int ubigeo, int estado) {
+		return repository.listaProveedorConParametros(razonsocial, ruc, ubigeo, estado);
+	}
 	
 
 }
