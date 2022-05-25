@@ -11,4 +11,5 @@ import com.proyecto.util.AppSettings;
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class MarcaController {
 
+	
 }

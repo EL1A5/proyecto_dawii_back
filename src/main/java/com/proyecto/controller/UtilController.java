@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyecto.entidad.Cliente;
 import com.proyecto.entidad.Marca;
 import com.proyecto.entidad.Pais;
+import com.proyecto.entidad.Proveedor;
 import com.proyecto.entidad.TipoReclamo;
 import com.proyecto.entidad.Ubigeo;
 import com.proyecto.service.ClienteService;
 import com.proyecto.service.MarcaService;
 import com.proyecto.service.PaisService;
+import com.proyecto.service.ProveedorService;
 import com.proyecto.service.TipoReclamoService;
 import com.proyecto.service.UbigeoService;
 import com.proyecto.util.AppSettings;
@@ -41,6 +43,10 @@ public class UtilController {
 
 	@Autowired
 	private TipoReclamoService tipoReclamoService;
+	
+	@Autowired
+	private ProveedorService proveedorService;
+	
 
 	@GetMapping("/listaCliente")
 	@ResponseBody
@@ -83,5 +89,14 @@ public class UtilController {
 	public List<Ubigeo> verDistritos(@PathVariable("paramDepar") String departamento, @PathVariable("paramProv") String provincia) {
 		return ubigeoService.listaDistritos(departamento, provincia);
 	}
+	
+	@GetMapping("/listaProveedor")
+	@ResponseBody
+	public List<Proveedor> listaProveedor(){
+		return proveedorService.listar();
+	}
+	
+	
+	
 
 }
