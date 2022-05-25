@@ -24,4 +24,9 @@ public class SedeServiceImpl implements SedeService {
 		return repositorio.save(obj);
 	}
 
+	@Override
+	public List<Sede> listaSedePorNombreDireccionPaisEstado(String nombre, String direccion, int idPais, int estado) {
+		return repositorio.listaSedePorNombreDireccionPaisEstado(nombre, direccion, idPais, estado);
+	}
+
 }
