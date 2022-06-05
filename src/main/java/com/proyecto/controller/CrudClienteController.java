@@ -4,10 +4,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,5 +87,29 @@ public class CrudClienteController {
 		return ResponseEntity.ok(salida);
 	}	
 	
-}
+	@DeleteMapping("/eliminaCliente/{id}")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> eliminaCliente(@PathVariable("id")int id) {
+		Map<String, Object> salida = new HashMap<>();
+		try {
+			Optional<Cliente> opt = cliente.buscaCliente(id);
+			if (opt.isPresent()) {
+				cliente.eliminaCliente(id);
+				Optional<Cliente> optDocente = cliente.buscaCliente(id);
+				if (optDocente.isEmpty()) {
+					salida.put("mensaje","Eliminscion exitosa");
+				} else {
+					salida.put("mensaje","Error al Eliminar");
+				}
+			}else {
+				salida.put("mensaje","ID no existe, no se pudo eliminar");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("mensaje","Error al eliminar");
+		}
+		return ResponseEntity.ok(salida);
+	}
 	
+}
+
