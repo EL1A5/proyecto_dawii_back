@@ -1,6 +1,7 @@
 package com.proyecto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,27 @@ public class ClienteServiceImpl implements ClienteService {
 		return repository.listaClientePorNombreDniUbigeo(nombres, dni, idUbigeo, estado);
 	}
 
+	@Override
+	public Cliente insertaActualizaClientes(Cliente obj) {
+		return repository.save(obj);
+	}
+
+	@Override
+	public List<Cliente> listaDClientesPorNombreLike(String nombre) {
+		return repository.listaPorNombreLike(nombre);
 	
-}
+	}
 
+	@Override
+	public void eliminaCliente(int id) {
+		repository.deleteById(id);
+		
+	}
 
-
+	@Override
+	public Optional<Cliente> buscaCliente(int id) {
+		return repository.findById(id);
+		}
+	}
+	
 
