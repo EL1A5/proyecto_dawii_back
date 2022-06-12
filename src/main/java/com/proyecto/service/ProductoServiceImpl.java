@@ -1,6 +1,7 @@
 package com.proyecto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,24 @@ public class ProductoServiceImpl implements ProductoService {
 	public List<Producto> listaProductoPorFiltros(String nombre, String serie, int pais, int estado) {
 		// TODO Auto-generated method stub
 		return repositoryproducto.listaProductoPorNombreSeriePaisEstado(nombre, serie, pais, estado);
+	}
+
+	@Override
+	public List<Producto> listaProductoPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return repositoryproducto.productoPorNombre(nombre);
+	}
+
+	@Override
+	public void eliminaproducto(int id) {
+		repositoryproducto.deleteById(id);
+		
+	}
+
+	@Override
+	public Optional<Producto> buscaproducto(int id) {
+		// TODO Auto-generated method stub
+		return repositoryproducto.findById(id);
 	}
 
 	
