@@ -24,7 +24,7 @@ import com.proyecto.entidad.Reclamo;
 import com.proyecto.util.AppSettings;
 
 @RestController
-@RequestMapping("/url/reclamo")
+@RequestMapping("/url/CrudReclamo")
 @CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class CrudReclamoController {
 	
