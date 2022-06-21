@@ -54,24 +54,24 @@ class ProductoTest {
 
 	@Test
 	public void testBuscarPorId() {
-		Producto product = repo.findById(36).get();
+		Producto product = repo.findById(1).get();
 		System.out.println("NOMBRE " + product.getNombre());
-		assertEquals("PRUEBA", product.getNombre());
+		assertEquals("Martillo de fierro", product.getNombre());
 	}
 
 	@Test 
 	public void testActualizarProducto(){ 
-		Producto p= repo.findById(36).get() ; 
+		Producto p= repo.findById(1).get() ; 
 	     p.setStock(1000); 
 	     repo.save(p) ; 
-	     assertNotEquals (200.00,repo.findById(36).get().getStock()); 
+	     assertNotEquals (200.00,repo.findById(1).get().getStock()); 
 	     
 	}
 
 	@Test
 	public void testEliminarProducto() {
 		
-		int id=41;
+		int id=3;
 		
 		repo.deleteById(id);
 		assertThat(repo.existsById(id)).isFalse();
