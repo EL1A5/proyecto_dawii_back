@@ -1,6 +1,7 @@
 package com.proyecto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,21 @@ public class ProveedorServiceImpl  implements ProveedorService{
 	@Override
 	public List<Proveedor> listaProveedorConParametros(String razonsocial, String ruc, int ubigeo, int estado) {
 		return repository.listaProveedorConParametros(razonsocial, ruc, ubigeo, estado);
+	}
+
+	@Override
+	public List<Proveedor> listaProveedorPorRazonSocial(String razonSocial) {
+		return repository.proveedorPorRazonSocial(razonSocial);
+	}
+
+	@Override
+	public void eliminaProveedor(int idProveedor) {
+		repository.deleteById(idProveedor);
+	}
+
+	@Override
+	public Optional<Proveedor> buscaProveedor(int idProveedor) {
+		return repository.findById(idProveedor);
 	}
 	
 
