@@ -4,19 +4,21 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.proyecto.entidad.Proveedor;
 import com.proyecto.service.ProveedorService;
 import com.proyecto.util.AppSettings;
@@ -67,7 +69,6 @@ public class ProveedorController {
 		return ResponseEntity.ok(salida);
 	}
 	
-	
 	@GetMapping("/listaProveedorConParametros")
 	@ResponseBody
 	public ResponseEntity<Map<String, Object>> listaProveedorConParametros(
@@ -99,6 +100,99 @@ public class ProveedorController {
 		}
 		return ResponseEntity.ok(salida);
 	}
+	
+	
+	@GetMapping("/listaProveedorPorRazonSocial/{razon}")
+	@ResponseBody
+	public ResponseEntity<List<Proveedor>> listaProveedorPorRazonSocial(@PathVariable("razon") String razon){
+		System.out.println("listaProveedorPorRazonSocial - razon: "+ razon);
+		List<Proveedor>  listaProveedor= null;
+		try {
+			if (razon.equals("todos")) {
+				listaProveedor = proveedorService.listaProveedorPorRazonSocial("%");
+			}else {
+				listaProveedor = proveedorService.listaProveedorPorRazonSocial("%"+ razon +"%");
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ResponseEntity.ok(listaProveedor);
+	}
+	
+	
+	@PostMapping("/registraProveedor")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> registraProveedor(@RequestBody Proveedor proveedor){
+		
+		Map<String, Object> salida = new HashMap<>();
+		try {
+			proveedor.setIdProveedor(0);
+			proveedor.setEstado(1);
+			proveedor.setFechaRegistro(new Date());
+			Proveedor objProveedor = proveedorService.insertaActualiza(proveedor);
+			if (objProveedor == null) {
+				salida.put("mensaje", "No se registró Proveedor");
+			}else {
+				salida.put("mensaje", "Se registró correctamente el Proveedor");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("mensaje", "No se registró el Proveedor");
+		}
+		return ResponseEntity.ok(salida);
+	}
+	
+	
+	@PutMapping("/actualizaProveedor")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> actualizaProveedor(@RequestBody Proveedor proveedor){
+		Map<String, Object> salida = new HashMap<>();
+		try {
+			Proveedor objProveedor = proveedorService.insertaActualiza(proveedor);
+			if (objProveedor == null) {
+				salida.put("mensaje", "No se actualizo Proveedor");
+			}else {
+				salida.put("mensaje", "Se actualizo correctamente el Proveedor");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			salida.put("mensaje", "No se proceso la solicitud");
+		}
+		return ResponseEntity.ok(salida);
+	}
+	
+	
+	@DeleteMapping("/eliminaProveedor/{id}")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> eliminaProveedor(@PathVariable("id")int id){
+		
+		Map<String, Object> salida = new HashMap<>();
+		try {
+			Optional<Proveedor> objProveedor = proveedorService.buscaProveedor(id);
+			if (objProveedor.isPresent()) {
+				proveedorService.eliminaProveedor(id);
+				Optional<Proveedor> obj = proveedorService.buscaProveedor(id);
+				if (obj.isEmpty()) {
+					salida.put("mensaje","Eliminación exitosa");
+				}else {
+					salida.put("mensaje","Error al eliminar");
+				}
+			}else {
+				salida.put("mensaje","Proveedor con el ID no existe en BD, no se puede eliminar");
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			salida.put("mensaje","Error al eliminar Proveedor");
+		}
+		return ResponseEntity.ok(salida);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 
 }
